@@ -1,0 +1,12 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="title" >Войдите или зарегистрируйтесь</h1>
+<form class="form1" action="/login/" method="post">
+  <input type="text" name="username" placeholder="имя пользователя" required>
+  <br />
+  <input type="email" name="email" placeholder="электронная почта" required>
+  <br />
+  <input type="submit" value="Войти" />
+</form>
+
+{% endblock %}
