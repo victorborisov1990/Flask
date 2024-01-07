@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="title">Добро пожаловать</h1>
+
+<form action="/logout/">
+    <p class="text">Привет, {{ username }}! <input type="submit" value="Выйти из системы"></p>
+</form>
+
+{% endblock %}
