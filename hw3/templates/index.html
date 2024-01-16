@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1 class="title"> Регистрация </h1>
+<div class="block">
+    <form method="post" action="{{ url_for('index') }}">
+        {{ form.csrf_token }}
+        <p style="text2">
+            {{ form.name.label }}<br>
+            {{ form.name(size=32) }}
+        </p>
+        <p style="text2">
+            {{ form.surname.label }}<br>
+            {{ form.surname(size=32) }}
+        </p>
+        <p style="text2">
+            {{ form.email.label }}<br>
+            {{ form.email(size=32) }}
+        </p>
+        <p style="text2">
+            {{ form.password.label }}<br>
+            {{ form.password(size=32) }}
+        </p>
+        <p style="text2">
+            {{ form.confirm_password.label }}<br>
+            {{ form.confirm_password(size=32) }}
+        </p>
+        <p style="text2">
+            <input type="submit" value="Register">
+        </p>
+    </form>
+</div>
+
+{% endblock %}
