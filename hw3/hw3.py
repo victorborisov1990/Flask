@@ -32,12 +32,17 @@ def index():
 	form = Registration()
 	# if form.validate_on_submit():  # если нажата кнопка (она может быть нажата, только если все поля проверены)
 	# этот вариант выдавал ошибку "flask method not allowed"
-	if request.method == 'POST' and form.validate:
+	if request.method == 'POST' and form.validate():
 		user = User(name=form.name.data, surname=form.surname.data, email=form.email.data,
 					password=generate_password_hash(form.password.data))
 		db.session.add(user)
 		db.session.commit()
+		flash('Пользователь успешно зарегистрирован!')
 		return redirect(url_for('index'))  # после сохранения данных из формы переходим на стартовую с чистой формой
+	else:
+	    for field in form:
+	        for error in field.errors:
+	            flash(error)
 	return render_template('index.html', form=form)  # если не нажата (get запрос) - передаем пустую форму
 
 
