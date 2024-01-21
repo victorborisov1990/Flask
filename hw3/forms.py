@@ -10,4 +10,4 @@ class Registration(FlaskForm):
 	password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
 	confirm_password = PasswordField('Confirm password',
 									 validators=[DataRequired(), Length(min=6), EqualTo('password')])
-	submit = SubmitField('Submit registration')
+	submit = SubmitField('Register')

@@ -15,26 +15,28 @@
 	      {% endif %}
     {% endwith %}
 <div class="block">
-    <form method="post" action="{{ url_for('index') }}">
+<form method="post" >
         {{ form.csrf_token }}
-<p>
-    {% for field in form if field.name != 'csrf_token' %}
     <p>
-        {{ field.label }}<br>
-        {{ field(size=32) }}
+        {% for field in form if field.name != 'csrf_token' %}
+        <p>
+            {{ field.label }}<br>
+            {{ field(size=32) }}
+        </p>
+        <p>
+            {% if field.errors %}
+            <ul class="alert alert-danger">
+                {% for error in field.errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </p>
+        {% endfor %}
     </p>
-    <p>
-        {% if field.errors %}
-        <ul class="alert alert-danger">
-            {% for error in field.errors %}
-            <li>{{ error }}</li>
-            {% endfor %}
-        </ul>
-        {% endif %}
-    </p>
-    {% endfor %}
-</p>
-    </form>
+</form>
 </div>
 
 {% endblock %}
+
+<!--from form action="{{ url_for('index') }}" -->

@@ -4,7 +4,7 @@
 # а пароль должен быть зашифрован.
 # '''
 
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_wtf.csrf import CSRFProtect
 from werkzeug.security import generate_password_hash
 # from werkzeug.security import check_password_hash
@@ -27,7 +27,7 @@ def create():
 	print('CREATION COMPLETE')
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])  # 
 def index():
 	form = Registration()
 	# if form.validate_on_submit():  # если нажата кнопка (она может быть нажата, только если все поля проверены)
@@ -39,10 +39,9 @@ def index():
 		db.session.commit()
 		flash('Пользователь успешно зарегистрирован!')
 		return redirect(url_for('index'))  # после сохранения данных из формы переходим на стартовую с чистой формой
-	else:
-	    for field in form:
-	        for error in field.errors:
-	            flash(error)
+	for field in form:
+		for error in field.errors:
+			flash(error)
 	return render_template('index.html', form=form)  # если не нажата (get запрос) - передаем пустую форму
 
 
